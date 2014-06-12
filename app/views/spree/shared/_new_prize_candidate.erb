@@ -1,0 +1,8 @@
+<fieldset>
+  <legend><%= Spree.t(:prize_invite) %></legend>
+  <%= form_tag prize_candidates_path(params[:id] || prize_id), class: 'form-inline', role: 'form' do %>
+    <%= label_tag 'candidate[email]', t('candidate.email') %>
+    <%= text_field_tag 'candidate[email]', nil, class: 'form-control' %>
+    <%= submit_tag 'Sent', class: 'btn btn-success btn-sm' %>
+  <% end %>
+</fieldset>

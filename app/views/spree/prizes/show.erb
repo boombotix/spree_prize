@@ -1,0 +1,13 @@
+<fieldset>
+  <legend><b><%= @prize.title %></b></legend>
+  <p><i><%= @prize.description %></i></p>
+  <p><%= image_tag @prize.image.url('big') %></p>
+</fieldset>
+
+<%= render partial: 'spree/shared/new_prize_candidate' %>
+
+<hr>
+
+<%# unless @candidates.empty? %>
+  <%#= render partial: 'spree/shared/prizes/candidates/candidates' %>
+<%# end %>

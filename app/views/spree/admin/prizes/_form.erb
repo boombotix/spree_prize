@@ -1,0 +1,55 @@
+<%# Datepicker JS / CSS %>
+<%= stylesheet_link_tag 'DateTimePicker.min.css' %>
+<%= javascript_include_tag 'DateTimePicker.min.js' %>  
+<!--[if lt IE 9]>
+  <%= stylesheet_link_tag 'DateTimePicker-ltie9.min.css' %>
+  <%= javascript_include_tag 'DateTimePicker-ltie9.min.js' %>
+<![endif]-->
+
+<div data-hook="admin_prizes">
+  <%= form_for @prize, url: ( @prize.id.nil? ? admin_prizes_path(@prize) : admin_prize_path(@prize) ) do |f| %>
+    <fieldset data-hook="prize" class=" no-border-bottom">
+      <legend align="center"><%= Spree::t(:general_settings) %></legend>
+
+        <div class="field">
+          <%= f.label :title, Spree::t('prize.title') %>
+          <%= f.text_field :title, :class => 'fullwidth' %>
+        </div>
+        <div class="field">
+          <%= f.label :begin_time, Spree::t('prize.begin_time') %>
+          <%= f.text_field :begin_time, :'data-field' => 'datetime', :readonly => true%>
+        </div>
+        <div class="field">
+          <%= f.label :end_time, Spree::t('prize.end_time') %>
+          <%= f.text_field :end_time, :'data-field' => 'datetime', :readonly => true%>
+        </div>
+        <div id="datetime-selector"></div>
+        <div class="field">
+          <%= f.label :image, Spree::t('prize.image') %>
+          <% if @prize.image_file_name %>
+            <p><%= image_tag @prize.image.url('thumb') %></p>
+            <p><%= "<i>#{@prize.image.original_filename}</i>" %></p>
+          <% end %>
+          <%= f.file_field :image, :class => 'fullwidth' %>
+        </div>
+        <div class="field">
+          <%= f.label :description, Spree::t('prize.description') %>
+          <%= f.text_area :description, :class => 'fullwidth' %>
+        </div>
+      
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button Spree::t( action_name.eql?('edit') ? 'actions.update' : 'actions.create') %>
+        <span class="or"><%= Spree::t(:or) %></span>
+        <%= link_to_with_icon 'remove', Spree::t('actions.cancel'), admin_prizes_url, :class => 'button' %>
+      </div>
+    </fieldset>
+    
+    <div class="clear"></div>
+  
+  <% end %>
+</div>
+
+<script>
+  // $( ".calendar" ).datepicker({ dateFormat: "yy-mm-dd" });
+  $('#datetime-selector').DateTimePicker();
+</script>

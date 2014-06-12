@@ -1,0 +1,12 @@
+<tr class="<%= candidate.try(:winable_id) == @prize.id ? 'winner' : nil  %>">
+  <td><%= candidate.try(:name) %></td>
+  <td><%= candidate.email %></td>
+  <td>
+    <% if candidate.state %>
+      <%= "#{ candidate.city }, #{ candidate.state }" %></td>
+    <% end %>
+  <td class="actions">
+    <%= link_to '', edit_admin_prize_candidate_path(@prize, candidate.id), class: 'fa fa-edit icon_link with-tip no-text' %>
+    <%= link_to '', admin_prize_candidate_path(@prize, candidate.id), 'data-confirm' => "Are you sure?", class: 'delete-resource fa fa-trash icon_link with-tip no-text', method: 'delete' %>
+  </td>
+</tr> 

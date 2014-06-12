@@ -1,0 +1,535 @@
+
+
+$boombotixRegular: "TwCenMT-Regular", "Futura", "Century Gothic", Arial, sans-serif;
+$boombotixBold:  "TwCenMT-Bold", "Futura", "Century Gothic", Arial, sans-serif;
+$boombotixItalic:  "TwCenMT-Italic", "Futura", "Century Gothic", Arial, sans-serif;
+$boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, sans-serif;;
+
+
+.content {
+  .banner-box {
+    margin: 0 0 5px;
+    background-image: asset-url('prizes/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media only screen and (max-width: 40em){
+      background-position: center;
+    }
+    .container {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .wrap-container {
+      padding: 0 58px;
+    }
+    .container > img {
+      display: block;
+      width: 100%;
+      margin-top: -2rem;
+    }
+    .text-box {
+      position: relative;
+      width: 100%;
+      padding-bottom: 1rem;
+      .wrap > * {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+    h2 {
+      // To account for the small space to the right that a capital F generates compared to a lowercase f
+      margin: 0;
+      margin-left: -4px;
+      font-size: 6rem;
+      color: #fff;
+      padding: 0;
+      font-family: $boombotixRegular;
+    }
+    h3 {
+      line-height: 100%;
+      font-family: $boombotixRegular;
+      font-size: 2rem;
+      color: #fff;
+      padding: 0;
+      margin: 0 0 6px;
+    }
+    h4 {
+      margin: 0;      
+      font-family: $boombotixRegular;
+      font-size: 1.5rem;
+      color: #fff;
+      background: rgba(156, 64, 152, 0.6);
+      padding: 9px 9px;
+    }
+    .wrap-title {
+      position: relative;
+      padding: 24px 48px 24px 0;
+      margin: -8px 0 15px 0;
+      max-width: 468px;
+      width: 100%;
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 45px solid transparent;
+        border-left: 48px solid #46afee;
+        border-bottom: 45px solid transparent;
+
+      }
+      h5 {
+        font-family: $boombotixRegular;
+        background: #46afee;
+        color: #fff;
+        padding: 2px 0 2px 58px;
+        text-align: right;
+        line-height: 2.5rem;
+        font-size: 2rem;
+        overflow: hidden;
+        margin: 0;
+        @media only screen 
+        and (min-device-width : 768px) 
+        and (max-device-width : 1024px) 
+        and (orientation : portrait){
+          line-height: 1rem;
+        }
+      }
+    }
+    .form-box {
+      width: 100%;
+      max-width: 550px;
+      margin: .6rem 0;
+    }
+    input {
+      background: #fff;
+      max-width: 382px;
+      font: 19px / 100% $boombotixRegular;
+      color: #646464;
+      padding: 0 20px;
+      border-radius: 0px;
+      border: none;
+      float: left;
+      width: 70%;
+      height: 47px;
+      &:-moz-placeholder {
+        font: 19px / 250% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        font: 19px / 250% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        font: 19px / 100% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &::-webkit-input-placeholder {
+        font: 19px / 100% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+    }
+    button {
+      border: none;
+      float: left;
+      width: 30%;
+      font: 20px / 100% $boombotixRegular;
+      color: #fff;
+      background: #46afee;
+      -moz-border-radius-topright: 2px;
+      -webkit-border-top-right-radius: 2px;
+      border-top-right-radius: 2px;
+      -moz-border-radius-bottomright: 2px;
+      -webkit-border-bottom-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      padding: 0 5px;
+      height: 47px;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+        background: #3f9cd4;
+      }
+    }
+    .wrap-social-area {
+      width: 100%;
+      max-width: 546px;
+      text-align: right;
+    }
+    .social-area {
+      display: inline-block;
+      vertical-align: top;
+      h6 {
+        display: inline-block;
+        vertical-align: top;
+        font: 21px / 100% $boombotixItalic;
+        color: #fff;
+        margin: 15px 13px 0 0;
+        padding: 0;
+      }
+    }
+    .social-box {
+      display: inline-block;
+      vertical-align: top;
+      background: rgba(156, 64, 152, 0.6);
+      padding: 11px 25px;
+      list-style: none;
+      margin: 0;
+      > * {
+        float: left;
+        margin-left: 17px;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .main-content {
+    h2 {
+      font: 40px / 100% $boombotixBoldItalic;
+      color: #353535;
+      padding: 0;
+      margin: 30px 0 0;
+    }
+    h3 {
+      font: 33px / 100% $boombotixBold;
+      color: #9c4098;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+    p {
+      font-size: 23px; 
+      font-family: $boombotixRegular;
+      color: #353535;
+      padding: 0;
+      margin: 0 0 30px;
+      line-height: 120%;
+      @media screen and (max-width: 40em) {
+        text-align: justify;
+      }
+    }
+  }
+
+  $rightCellWidth: 30%;
+  .left-cell {
+    float: left;
+    width: (100% - $rightCellWidth);
+    margin: 0 0 15px;
+    padding: 0;
+  }
+  .right-cell {
+    float: right;
+    width: $rightCellWidth;
+    margin: 1rem 0 0;
+    padding: 0 0 0 1%;
+  }
+  .main-content .right-cell h6 {
+    font: 21px / 100% $boombotixItalic;
+    color: #353535;
+    padding: 0;
+    margin: 0 0 8px;
+    text-align: center;
+  }
+  .right-cell {
+    text-align: center;
+    .wrap-img {
+      height: 300px;
+      display: inline-block;
+      vertical-align: top;
+      margin: 25px 0 0;
+    }
+  }
+}
+
+/* giveaway-page */
+
+/* main-content */
+
+.timer-box > * {
+  font-family: $boombotixBold;
+}
+
+.content {
+  .main-content .form-search {
+    max-width: 550px;
+    width: 100%;
+    margin: 0 0 75px;
+    input {
+      background: #fff;
+      max-width: 382px;
+      font: 19px / 100% $boombotixRegular;
+      color: #646464;
+      padding: 0 20px;
+      border-radius: 0px;
+      border: none;
+      float: left;
+      width: 70%;
+      height: 47px;
+      border: 2px solid #afadad;
+      border-right: none;
+      &:-moz-placeholder {
+        font: 19px / 250% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        font: 19px / 250% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        font: 19px / 100% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+      &::-webkit-input-placeholder {
+        font: 19px / 100% $boombotixRegular;
+        color: #646464;
+        opacity: 1;
+      }
+    }
+    button {
+      border: none;
+      float: left;
+      width: 30%;
+      font: 20px / 100% $boombotixRegular;
+      color: #fff;
+      background: #46afee;
+      -moz-border-radius-topright: 2px;
+      -webkit-border-top-right-radius: 2px;
+      border-top-right-radius: 2px;
+      -moz-border-radius-bottomright: 2px;
+      -webkit-border-bottom-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      padding: 0 5px;
+      height: 47px;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+        background: #3f9cd4;
+      }
+    }
+  }
+  .table-box {
+    h2 {
+      padding: 0 5px 20px;
+      border-bottom: 7px solid #46afee;
+      margin: 0 0 16px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      margin: 0 auto 28px;
+      th {
+        text-transform: uppercase;
+        padding: 0 0 20px;
+        font: 16px / 100% $boombotixBold;
+        color: #353535;
+        vertical-align: top;
+        text-align: center;
+      }
+      td {
+        text-transform: uppercase;
+        padding: 0 0 12px;
+        font: 16px / 100% $boombotixRegular;
+        color: #353535;
+        vertical-align: top;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+
+
+/* img-area */
+
+$emailInput: 2rem;
+@media only screen and (max-width: 40em) {
+  $emailInput: 2.5rem;
+}
+.content .img-area {
+  position: relative;
+  img {
+    width: 100%;
+    max-height: 780px;
+  }
+  .bg-box {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(32, 32, 32, 0.72);
+    z-index: 5;
+  }
+}
+
+/* mobile */
+@media only screen and (max-width: 990px) {
+  .content .banner-box {
+    h2 {
+      font-size: 60px;
+    }
+    h3 {
+      font-size: 25px;
+    }
+    h4 {
+      font-size: 18px;
+    }
+    .wrap-title {
+      padding: 15px 35px 14px 0;
+      margin: -8px 0 15px 0;
+      &:after {
+        border-top: 30px solid transparent;
+        border-left: 35px solid #46afee;
+        border-bottom: 30px solid transparent;
+      }
+      h5 {
+        font-size: 22px;
+        padding: 6px 0 0px 58px;
+        height: 30px;
+      }
+    }
+
+    input {
+      font-size: 16px;
+      // height: $emailInput;
+      border-radius: 0px;
+      &:-moz-placeholder {
+        font: 16px / 200% $boombotixRegular;
+      }
+      &::-moz-placeholder {
+        font: 16px / 200% $boombotixRegular;
+      }
+      &:-ms-input-placeholder {
+        font: 16px / 100% $boombotixRegular;
+      }
+      &::-webkit-input-placeholder {
+        font: 16px / 100% $boombotixRegular;
+      }
+      @media only screen and (max-device-width : 1024px) {
+        height: $emailInput;
+      }
+    }
+    button {
+      font-size: 17px;
+      height: $emailInput;
+      @media only screen and (max-width: 40em) {
+        height: $emailInput;
+      }
+    }
+  }
+  .content {
+    .left-cell {
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+    .right-cell {
+      float: none;
+      width: 100%;
+      margin: 0 0 30px;
+      padding: 0;
+    }
+    .wrap-clock {
+      text-align: center;
+      width: 75%;
+      margin: 0 auto;
+      .clock {
+        display: inline-block;
+        vertical-align: top;
+        width: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .content {
+    .banner-box {
+      .container > img {
+        height: 320px;
+      }
+      .wrap-container {
+        padding: 0 5%;
+      }
+    }
+    .main-content .top-area {
+      .left-box {
+        width: 100%;
+      }
+      .right-box {
+        width: 100%;
+        img {
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+  .content {
+    .banner-box {
+      .wrap-title {
+        margin-top: 5px;
+      }
+      input {
+        width: 60%;
+        padding: 0 7px;
+      }
+      button {
+        width: 40%;
+      }
+    }
+    .main-content .form-search {
+      input {
+        padding: 0 5px;
+        width: 60%;
+        font-size: 16px;
+        // height: $emailInput;
+        border-radius: 0px;
+        &:-moz-placeholder {
+          font: 16px / 180% $boombotixRegular;
+        }
+        &::-moz-placeholder {
+          font: 16px / 180% $boombotixRegular;
+        }
+        &:-ms-input-placeholder {
+          font: 16px / 100% $boombotixRegular;
+        }
+        &::-webkit-input-placeholder {
+          font: 16px / 100% $boombotixRegular;
+        }
+      }
+      button {
+        width: 40%;
+        font-size: 17px;
+        height: $emailInput;
+      }
+    }
+    .wrap-table {
+      height: 300px;
+      text-transform: uppercase;
+      // overflow: scroll;
+      width: 100%;
+      table {
+        max-width: none;
+      }
+    }
+  }
+}

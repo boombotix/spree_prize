@@ -1,0 +1,29 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:prize) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_prize_link">
+    <%= button_link_to Spree.t(:new_prize), new_admin_prize_url, { :icon => 'plus', :id => 'admin_new_prize' } %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/prizes_sub_menu' %>
+
+<table class="index" id="admin_prizes_list" data-hook>
+  <thead>
+    <tr>
+      <th><%= t('prize.title') %></th>
+      <th><%= t('prize.begin_time') %></th>
+      <th><%= t('prize.end_time') %></th>
+      <th><%= t('prize.winner') %></th>
+      <th><%= t('prize.image') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'prize', :collection => Spree::Prize.all %>
+  </tbody>
+</table>
+
+<div id="new_prize_wrapper" data-hook></div>

@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    <%= link_to prize.title, admin_prize_url(prize.id) %>
+    <% if prize.active? %>
+      <span class="active_prize">Active</span>
+    <% end %>
+  </td>
+  <td><%= prize.begin_time %></td>
+  <td><%= prize.end_time %></td>
+  <td>
+    <% if prize.winner %>
+      <%= prize.winner.email %>
+    <% end %>
+  </td>
+  <td>
+    <% if prize.image_file_name %>
+      <%= image_tag prize.image.url('thumb') %>
+    <% end %>
+  </td>
+  <td class="actions">
+    <%= link_to '', edit_admin_prize_path(prize.id), class: 'fa fa-edit icon_link with-tip no-text' %>
+    <%= link_to '', admin_prize_path(prize.id), 'data-confirm' => "Are you sure?", class: 'delete-resource fa fa-trash icon_link with-tip no-text', method: 'delete' %>
+  </td>
+</tr>

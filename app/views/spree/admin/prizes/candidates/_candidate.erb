@@ -1,0 +1,16 @@
+<tr>
+  <td><%= candidate.name %></td>
+  <td><%= candidate.email %></td>
+  <td><%= candidate.try(:country) || 'secret' %></td>
+  <td><%= candidate.try(:state) || 'secret' %></td>
+  <td><%== candidate.winner == true ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-circle-o"></i>'  %></td>
+  <td class="actions">
+    <% if candidate.winner %>
+      <%= link_to '', admin_winner_candidate_url(id: candidate.id, mark: 'off'), class: 'fa fa-minus-square-o icon_link with-tip no-text' %>
+    <% else %>
+      <%= link_to '', admin_winner_candidate_url(id: candidate.id, mark: 'on'), class: 'fa fa-plus-square-o icon_link with-tip no-text' %>
+    <% end %>
+    <%= link_to '', admin_edit_candidate_url(candidate.id), method: 'get', class: 'fa fa-edit icon_link with-tip no-text' %>
+    <%= link_to '', admin_prize_delete_candidate_url(candidate.id), method: 'delete', 'data-confirm' => "Are you sure?", class: 'delete-resource fa fa-trash icon_link with-tip no-text' %>
+  </td>
+</tr>

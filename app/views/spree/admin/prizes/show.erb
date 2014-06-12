@@ -1,0 +1,32 @@
+<% content_for :page_title do %>
+  <%= t(:prize) %>
+  :
+  <%= @prize.title %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:back_to_prizes),  admin_prizes_path, icon: 'arrow-left' %>
+  </li>
+  <li>
+    <%= button_link_to t(:edit_prize),  edit_admin_prize_path, icon: 'edit' %>
+  </li>
+  <li>
+    <%= button_link_to 'Choose Winner', admin_prize_winner_path, method: 'PATCH', icon: 'star' %>
+  </li>
+<% end %>
+
+<p><b>Begin Time:</b> <%= @prize.begin_time %></p>
+<p><b>End Time:</b> <%= @prize.end_time %></p>
+<p><b>Description:</b> <%= @prize.description %></p>
+<br />
+
+<% if @prize.image_file_name %>
+  <p><%= image_tag @prize.image.url('big') %></p>
+<% end %>
+
+<hr />
+
+<% unless @candidates.empty? %>
+  <%= render partial: 'spree/shared/prizes/candidates/candidates' %>
+<% end %>

@@ -1,0 +1,29 @@
+<fieldset>
+  <%= form_for @candidate, url: admin_prize_candidate_path(@prize, @candidate) do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'fullwidth' %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'fullwidth' %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'fullwidth' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :state %>
+      <%= f.text_field :state, class: 'fullwidth' %>
+    </div>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button Spree::t( action_name.eql?('edit') ? 'actions.update' : 'actions.create') %>
+      <span class="or"><%= Spree::t(:or) %></span>
+      <%= link_to_with_icon 'remove', Spree::t('actions.cancel'), admin_prizes_url(@prize), :class => 'button' %>
+    </div>
+  <% end %>
+</fieldset>

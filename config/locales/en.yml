@@ -1,0 +1,48 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  spree:
+    prize: Prizes
+    new_prize: New prize
+    edit_prize: Edit prize
+    back_to_prizes: Back to prizes list
+    prize_invite: Join to Lottery
+    prize_candidate: Candidate
+    prize_table:
+      title: Name
+      image: Image
+      begin_time: Begin Time
+      end_time: End Time
+      description: Description
+      winner: Winner
+      image: Photo
+    candidate:
+      name: Name
+      email: Email
+      country: Country
+      city: City
+      winner: Winner
+    listark:
+      list_id: '* ListID'
+      list_name: ListName
+      create_date: '* CreateDate'
+      from_name: FromName
+      from_email: FromEmail
+      enable_removal_link: '* EnableRemovalLink'
+      enable_browser_link: '* EnableBrowserLink'
+      bounce_handling: '* bounceHandling'
+      enable_double_optin: '* EnableDoubleOptin'
+      enable_list_hygiene: '* EnableListHygiene'
+      vmta: Vmta
+      show_email_list: '* ShowEmailList'
+      show_advanced_personalization: '* ShowAdvancedPersonalization'
+      bounce_unsubscribe_count: '* BounceUnsubscribeCount'
+      domain_alias_link: DomainAliasLink
+      domain_alias_email: DomainAliasEmail
+      enable_rss: '* EnableRSS'
+      enable_google_analytics: '* EnableGoogleAnalytics'
+      google_tracking_domains: GoogleTrackingDomains
+      enable_internationalization: EnableInternationalization
+      enable_dynamic_content: '* EnableDynamicContent'
+      enable_list_remove_header: '* EnableListRemoveHeader'

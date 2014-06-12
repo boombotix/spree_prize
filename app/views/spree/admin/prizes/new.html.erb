@@ -1,0 +1,11 @@
+<% content_for :page_title do %>
+  <%= t(:new_prize) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:back_to_prizes),  admin_prizes_path, :icon => 'arrow-left' %>
+  </li>
+<% end %>
+
+<%= render partial: 'form' %>

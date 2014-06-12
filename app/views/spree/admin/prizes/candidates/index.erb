@@ -1,0 +1,29 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:prize_candidate) %>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/prizes_sub_menu' %>
+
+<table class="index" data-hook>
+  <colgroup>
+    <col style="width: 35%" />
+    <col style="width: 35%" />
+    <col style="width: 5%" />
+    <col style="width: 5%" />
+    <col style="width: 5%" />
+    <col style="width: 15%" />
+  </colgroup>
+  <thead>
+    <tr data-hook="zones_header">
+      <th><%= t('candidate.name') %></th>
+      <th><%= t('candidate.email') %></th>
+      <th><%= t('candidate.country') %></th>
+      <th><%= t('candidate.city') %></th>
+      <th><%= t('candidate.win') %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'candidate', :collection => Spree::Candidate.all %>
+  </tbody>
+</table>
