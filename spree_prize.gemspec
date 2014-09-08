@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.description = 'Add a timed lottery/giveaway to Spree. Candidates submit their email to enter each giveaway.'
   s.required_ruby_version = '>= 1.9.3'
 
-  s.author    = 'Boombotix'
-  # s.email     = 'you@example.com'
-  s.homepage  = 'http://www.boombotix.com'
+  s.author    = 'Alto Labs'
+  s.email     = 'edwin@altolabs.co'
+  s.homepage  = 'http://www.altolabs.co'
 
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
