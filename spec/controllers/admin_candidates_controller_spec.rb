@@ -12,8 +12,8 @@ describe Spree::Admin::Prizes::CandidatesController do
     controller.stub(:authorize_admin).and_return(true)
   end
 
-  describe '#update' do 
-    
+  describe '#update' do
+
     it 'updates the candidate attributes' do
       candidate = create(:candidate, name: 'John Smith')
       post :update, id: candidate, prize_id: prize, candidate: attributes_for(:candidate, name: 'Johnny Appleseed'), use_route: :spree
@@ -22,21 +22,21 @@ describe Spree::Admin::Prizes::CandidatesController do
     end
 
     it 'redirects to the prizes#show page on success' do
-      pending 'missing test'
+      skip 'missing test'
     end
 
-    it 're-renders the #edit view on error' do 
-      pending 'missing test'
+    it 're-renders the #edit view on error' do
+      skip 'missing test'
     end
 
   end
 
-  describe '#destroy' do 
-    pending 'missing test'
+  describe '#destroy' do
+    skip 'missing test'
   end
 
   describe '#edit' do
-    pending 'missing test'
+    skip 'missing test'
   end
 
 end

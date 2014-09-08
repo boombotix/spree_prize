@@ -1,9 +1,14 @@
+# As this plugin requires Rails, we forego the rails_helper
+# convention in lieu of requiring everything from the spec_helper
+
+
 # Configure Rails Environment
-ENV['RAILS_ENV'] = 'test'
+ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
+require 'rspec/active_model/mocks'  # shouldn't need this require
 require 'database_cleaner'
 require 'ffaker'
 
@@ -17,11 +22,15 @@ require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
 
-# Requires factories defined in lib/spree_prize/factories.rb
-require 'spree_prize/factories'
+# Requires factories defined in lib/spree_prize/factories/*
+FactoryGirl.find_definitions
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+
+  # The different available types are documented in the features, such as in
+  # https://relishapp.com/rspec/rspec-rails/docs
+  config.infer_spec_type_from_file_location!
 
   # == URL Helpers
   #
@@ -47,7 +56,7 @@ RSpec.configure do |config|
   # Capybara javascript drivers require transactional fixtures set to false, and we use DatabaseCleaner
   # to cleanup after each test instead.  Without transactional fixtures set to false the records created
   # to setup a test will be unavailable to the browser, which runs under a separate server instance.
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
   # Ensure Suite is set to use transactions for speed.
   config.before :suite do
@@ -57,7 +66,7 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 

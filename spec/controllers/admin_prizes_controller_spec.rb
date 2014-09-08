@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe Spree::Admin::PrizesController do
-
+RSpec.describe Spree::Admin::PrizesController, type: :controller do
   let(:user) { mock_model(Spree::User).as_null_object }
-  # let(:prize) { build_stubbed :prize, :active }
+  let(:prize) { build_stubbed :prize, :active }
 
   before(:each) do
     controller.stub(:spree_current_user).and_return(user)
@@ -71,7 +70,7 @@ describe Spree::Admin::PrizesController do
         expect(prize.title).to eq('Hello, Boombot!')
       end
 
-      it 'redirects to the admin prizes index' do 
+      it 'redirects to the admin prizes index' do
         prize = create(:prize, :active, title: 'Hello, World!')
         post :update, id: prize, prize: attributes_for(:prize, title: 'Hello, Boombot!'), use_route: :spree
         expect(response).to redirect_to('/admin/prizes')
@@ -80,40 +79,20 @@ describe Spree::Admin::PrizesController do
 
     context 'bad data / failure' do
       it 'renders the edit page' do
-        pending
+        skip
       end
 
-      it 'returns error messages' do 
-        pending
+      it 'returns error messages' do
+        skip
       end
     end
   end
 
   describe 'GET #show' do
-    pending
+    skip
   end
 
   describe 'PUT #destroy' do
-    pending
-
+    skip
   end
-
-  describe 'PATCH #winner' do
-    before :each do
-
-    end
-
-    it 'assigns a winner' do 
-      prize = create(:prize, :past_prize, :has_candidates)
-      patch :winner, id: prize, use_route: :spree
-      expect(prize.winner).to be_an_instance_of(Spree::Candidate)
-    end
-
-    it 'renders the prize#show page' do
-      prize = create(:prize, :past_prize, :has_candidates)
-      patch :winner, id: prize, use_route: :spree
-      expect(response).to redirect_to("/admin/prizes/#{prize.id}")
-    end
-  end
-  
 end

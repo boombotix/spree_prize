@@ -11,12 +11,11 @@ describe Spree::Prizes::CandidatesController do
     end
 
     it 'returns the email on success' do
-      post :create, format: 'json', candidate: attributes_for(:candidate, email: 'hello@world.org'), prize_id: prize, use_route: :spree
-      expect(response).to_not be_nil # eq('hello@world.org') <- TODO: using the actual expected response causes a nasty loop for some reason
+      attributes = attributes_for(:candidate)
+      post :create, format: 'json', candidate: attributes, prize_id: prize, use_route: :spree
+      expect(response).to_not be_nil # eq(attributes[:email]) <- TODO: using the actual expected response causes a nasty loop for some reason
     end
 
     it 'returns an error message on failure'
-
-    it 'adds the email to Listrak'
   end
 end
