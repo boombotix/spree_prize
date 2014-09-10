@@ -3,7 +3,6 @@ module Spree
     has_attached_file :image, :styles => {:big => "1024x1024", :medium => "300x300>", :thumb => "100x100>"}
     has_many :entries, class_name: 'Spree::Entry'
     has_many :candidates, through: :entries, class_name: 'Spree::Candidate'
-    # has_one :listark_list
     has_one :winner, as: :winable, class_name: 'Spree::Candidate'
 
     validates :begin_time, :end_time, presence: true
