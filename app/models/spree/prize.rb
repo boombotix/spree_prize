@@ -10,12 +10,7 @@ module Spree
 
     
     def active?
-      now = Time.now
-      if now > begin_time && now < end_time
-        true
-      else
-        false
-      end
+      (begin_time .. end_time).cover?(Time.now)
     end
 
     def choose_winner
