@@ -3,7 +3,7 @@ module Spree
 
     def index
       @prizes = Spree::Prize.active
-      @winners = Spree::Candidate.where(winable_type:'Spree::Prize')
+      @winners = Spree::Candidate.where(winable_type:'Spree::Prize').where("winable_id IS NOT NULL")
     end
 
     # def show

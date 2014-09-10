@@ -8,16 +8,15 @@ module Spree
 
     validates :begin_time, :end_time, presence: true
 
-    
     def active?
       (begin_time .. end_time).cover?(Time.now)
     end
 
     def choose_winner
-      if self.candidates.length > 0
+      if !new_record? && !active? && self.candidates.length > 0
         self.winner = self.candidates.sample
       else
-        false
+        nil
       end
     end
 
