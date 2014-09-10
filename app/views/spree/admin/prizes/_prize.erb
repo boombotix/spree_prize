@@ -9,7 +9,7 @@
   <td><%= prize.end_time %></td>
   <td>
     <% if prize.winner %>
-      <%= prize.winner.email %>
+      <%= link_to(prize.winner.email, edit_admin_prize_candidate_path(prize, prize.winner)) %>
     <% end %>
   </td>
   <td>
