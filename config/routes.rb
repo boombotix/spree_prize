@@ -11,12 +11,9 @@ Spree::Core::Engine.routes.draw do
     resources :prizes do
       resources :candidates, :only => [:edit, :update, :destroy], controller: 'prizes/candidates'
     end
-    
   end
 
   resources :prizes, only: [:index] do
     resources :candidates, only: [:create, :new], controller: 'prizes/candidates'
   end
-
-
 end

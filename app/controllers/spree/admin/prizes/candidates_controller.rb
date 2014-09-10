@@ -2,7 +2,6 @@ module Spree
   module Admin
     module Prizes
       class CandidatesController < Spree::Admin::BaseController
-
         def update
           @candidate = Spree::Candidate.find(params[:id])
           if @candidate.update(candidate_params)
