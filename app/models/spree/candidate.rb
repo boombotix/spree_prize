@@ -5,5 +5,11 @@ module Spree
     belongs_to :winable, polymorphic: true
 
     validates :email, presence: true, uniqueness: { case_sensitive: false }
+
+    after_create :newsletter_signup
+
+    def newsletter_signup
+      # override this in your own application
+    end
   end
 end
