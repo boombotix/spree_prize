@@ -9,10 +9,10 @@
     <div class="text-box">
       <div class="wrap-container">
         <div class="wrap">
-          <h2>FTW</h2>
+          <h2>#FTW</h2>
         </div>
         <div class="wrap">
-          <h3>FOR THE WIN</h3>
+          <h3>FOR THE WIN TEST</h3>
         </div>
         <div class="wrap">
           <h4>SICK SWAG PACKS EVERY WEEK</h4>
@@ -114,7 +114,7 @@
             <tr>
               <th>Date</th>
               <th>Name</th>
-              <th>City</th>
+              <th class="hidden-xs">City</th>
               <th>Prize</th>
             </tr>
           </thead>
@@ -123,7 +123,7 @@
               <tr>
                 <td><%= winner.winable.end_time.strftime('%m/%d/%y') %></td>
                 <td><%= winner.name %></td>
-                <td><%= "#{winner.city} - #{winner.state}" %></td>
+                <td class="hidden-xs"><%= "#{winner.city}, #{winner.state}" %></td>
                 <td><%= winner.winable.title %></td>
               </tr>
             <% end %>
