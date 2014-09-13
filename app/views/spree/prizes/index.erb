@@ -3,7 +3,6 @@
 <%= stylesheet_link_tag 'flipclock' %>
 <%= stylesheet_link_tag 'prizes' %>
 
-
 <div class="banner-box">
   <div class="container">
     <div class="text-box">
@@ -26,7 +25,7 @@
       <div class="wrap-container">
       <% unless @prizes.empty? %>
         <div class="form-area">
-          <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true do |candidate| %>
+          <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
             <div class="form-box clearfix">
               <%= candidate.text_field :email, placeholder: 'Email Address' %>
               <%= button_tag 'ENTER NOW' %>
@@ -97,7 +96,7 @@
       </div>
 
       <div class="form-search form-area">
-        <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(p, Spree::Candidate.new), remote: true do |candidate| %>
+        <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(p, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
           <div class="form-box clearfix">
             <%= candidate.text_field :email, placeholder: 'Email Address' %>
             <%= button_tag 'ENTER NOW' %>

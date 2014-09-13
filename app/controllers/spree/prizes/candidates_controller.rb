@@ -3,7 +3,7 @@ module Spree
     class CandidatesController < Spree::BaseController
 
       def create
-        @candidate = Spree::Candidate.find_or_create_by(email:candidate_params['email'])
+        @candidate = Spree::Candidate.find_or_create_by(email: candidate_params['email'])
         @prize = Spree::Prize.find(params[:prize_id])
 
         # Prevent candidates from signing up multiple times
@@ -12,21 +12,39 @@ module Spree
         end
 
         if @candidate.save
-          # TODO: Sign up Candidate email to Listrak
           respond_to do |f|
-            f.json { render json: @candidate.email }
+            f.json {
+              render json: {
+                message: "You're in. Good luck!"
+              }
+            }
           end
         else
           respond_to do |f|
-            f.json { render json: @candidate.errors.messages }
+            f.json {
+              render(
+                status: 422,
+                json: {
+                  message: response_error_message
+                }
+              )
+            }
           end
         end
       end
 
       private
-        def candidate_params
-          params.require(:candidate).permit(:email)
-        end
+
+      def candidate_params
+        params.require(:candidate).permit(:email)
+      end
+
+      def response_error_message
+        @candidate.errors.messages.inject("") { |msg, err|
+          msg << err.join(' ');
+          msg
+        }
+      end
 
     end
   end
