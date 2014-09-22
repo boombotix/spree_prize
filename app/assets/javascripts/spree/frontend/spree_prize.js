@@ -1,18 +1,6 @@
 // Placeholder manifest file.
 // the installer will append this file to the app vendored assets here: vendor/assets/javascripts/spree/frontend/all.js'
 
-if (Spree === undefined) {
-  var Spree = {};
-}
-
-Spree.prize = function() {}
-
-Spree.prize.apiRequest = function(data) {
-  var url = '';
-}
-
-
-
 jQuery(document).ready(function($) {
   $('.candidate-form').on('ajax:success', function afterSend(evt, request, options) {
     addAlertMessage('alert-success', request.message);
