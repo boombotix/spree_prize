@@ -2,13 +2,34 @@
 // the installer will append this file to the app vendored assets here: vendor/assets/javascripts/spree/frontend/all.js'
 
 jQuery(document).ready(function($) {
-  $('.candidate-form').on('ajax:success', function afterSend(evt, request, options) {
-    addAlertMessage('alert-success', request.message);
-  });
 
-  $('.candidate-form').on('ajax:error', function afterSend(evt, request, options) {
-    addAlertMessage('alert-danger', request.responseJSON.message);
-  });
+  if ($('.candidate-form').length > 0) {
+
+    var _fbq = window._fbq || (window._fbq = []);
+    if (!_fbq.loaded) {
+      var fbds = document.createElement('script');
+      fbds.async = true;
+      fbds.src = '//connect.facebook.net/en_US/fbds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(fbds, s);
+      _fbq.loaded = true;
+    }
+    window._fbq = window._fbq || [];
+
+    $('.candidate-form').on('ajax:success', function afterSend(evt, request, options) {
+      addAlertMessage('alert-success', request.message);
+      // Facebook Conversion Code for Production - Giveaway Signups
+      window._fbq.push(['track', '6026158502796', {
+        currency: 'USD',
+        value: 0
+      }]);
+    });
+
+    $('.candidate-form').on('ajax:error', function afterSend(evt, request, options) {
+      addAlertMessage('alert-danger', request.responseJSON.message);
+    });
+
+  }
 });
 
 function addAlertMessage(alertClass, alertMessage) {
