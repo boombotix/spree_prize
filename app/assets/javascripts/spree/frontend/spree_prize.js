@@ -17,6 +17,10 @@ jQuery(document).ready(function($) {
     window._fbq = window._fbq || [];
 
     $('.candidate-form').on('ajax:success', function afterSend(evt, request, options) {
+      $('body, html').animate({scrollTop: 0}, 'slow');
+      $('input[name="candidate[email]"]').map(function() {
+        $(this).val('');
+      });
       addAlertMessage('alert-success', request.message);
       // Facebook Conversion Code for Production - Giveaway Signups
       window._fbq.push(['track', '6026158502796', {
@@ -26,6 +30,10 @@ jQuery(document).ready(function($) {
     });
 
     $('.candidate-form').on('ajax:error', function afterSend(evt, request, options) {
+      $('body, html').animate({scrollTop: 0}, 'slow');
+      $('input[name="candidate[email]"]').map(function() {
+        $(this).val('');
+      });
       addAlertMessage('alert-danger', request.responseJSON.message);
     });
 
@@ -33,12 +41,14 @@ jQuery(document).ready(function($) {
 });
 
 function addAlertMessage(alertClass, alertMessage) {
+  $('#ftw-alert').remove();
   var container = $('.banner-box');
   var div_tag = $('<div class="alert alert-dismissable">');
   container.prepend(div_tag);
   div_tag.addClass('alert');
   div_tag.addClass('alert-dismissable');
   div_tag.addClass(alertClass);
+  div_tag.attr('id', 'ftw-alert');
   div_tag.html(
   '  <button type="button" class="close flash-close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
     '<center>' + alertMessage + '</center>'
