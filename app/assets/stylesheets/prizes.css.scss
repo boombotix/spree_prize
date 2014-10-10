@@ -2,7 +2,10 @@ $boombotixRegular: "TwCenMT-Regular", "Futura", "Century Gothic", Arial, sans-se
 $boombotixBold:  "TwCenMT-Bold", "Futura", "Century Gothic", Arial, sans-serif;
 $boombotixItalic:  "TwCenMT-Italic", "Futura", "Century Gothic", Arial, sans-serif;
 $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, sans-serif;;
-
+$emailInput: 47px;
+@media only screen and (max-width: 990px) {
+  $emailInput: 2.5rem;
+}
 
 .content {
   .banner-box {
@@ -12,6 +15,14 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
     background-size: cover;
     @media only screen and (max-width: 40em){
       background-position: center;
+    }
+    div.alert {
+      border-radius: 0px;
+      button {
+        top: 0;
+        width: auto;
+        height: auto;
+      }
     }
     .container {
       margin: 0;
@@ -114,7 +125,7 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
       border: none;
       float: left;
       width: 70%;
-      height: 47px;
+      height: $emailInput;
       &:-moz-placeholder {
         font: 19px / 250% $boombotixRegular;
         color: #646464;
@@ -150,7 +161,7 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
       -webkit-border-bottom-right-radius: 2px;
       border-bottom-right-radius: 2px;
       padding: 0 5px;
-      height: 47px;
+      height: $emailInput;
       text-align: center;
       cursor: pointer;
       -webkit-appearance: none; // Disable automatic styling in Safari mobile browser
@@ -275,7 +286,7 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
       border: none;
       float: left;
       width: 70%;
-      height: 47px;
+      height: $emailInput;
       border: 2px solid #afadad;
       border-right: none;
       &:-moz-placeholder {
@@ -313,7 +324,7 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
       -webkit-border-bottom-right-radius: 2px;
       border-bottom-right-radius: 2px;
       padding: 0 5px;
-      height: 47px;
+      height: $emailInput;
       text-align: center;
       cursor: pointer;
       -webkit-appearance: none;
@@ -358,10 +369,7 @@ $boombotixBoldItalic:  "TwCenMT-BoldItalic", "Futura", "Century Gothic", Arial, 
 
 /* img-area */
 
-$emailInput: 2rem;
-@media only screen and (max-width: 40em) {
-  $emailInput: 2.5rem;
-}
+
 .content .img-area {
   position: relative;
   img {
@@ -432,11 +440,12 @@ $emailInput: 2rem;
     }
     button {
       font-size: 17px;
-      height: $emailInput;
+      height: $emailInput; // adjust $emailInput
       -webkit-appearance: none;
       @media only screen and (max-width: 40em) {
-        height: $emailInput;
+        height: $emailInput; //adjust $email Input
         -webkit-appearance: none;
+        width: auto;
       }
     }
   }
@@ -505,8 +514,9 @@ $emailInput: 2rem;
         height: $emailInput;
       }
       button {
-        width: 40%;
+        width: auto;
         -webkit-appearance: none;
+        height: $emailInput;
       }
     }
     .wrap-clock {
