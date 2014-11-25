@@ -1,7 +1,11 @@
+<%# TODO: Add open graph meta tags %>
+
 <%# TODO: put the stylesheets in a yeild :head %>
 <%= javascript_include_tag 'flipclock.min' %>
+<%= javascript_include_tag 'social' %>
 <%= stylesheet_link_tag 'flipclock' %>
 <%= stylesheet_link_tag 'prizes' %>
+
 
 <div class="banner-box">
   <div class="container">
@@ -33,22 +37,33 @@
           <% end %>
         </div>
       <% end %>
-        <div class="hidden wrap-social-area">
+        <div class="wrap-social-area">
           <div class="social-area">
             <h6>Share</h6>
+<script>
+$(document).ready(function() {
+    $('#facebook_share_link').on('click', function() {
+        FB.ui({
+          method: 'share',
+          href: '<%= request.original_url %>'
+        },
+        function (response) { });
+    });
+});
+</script>
             <ul class="social-box clearfix">
-              <%# TODO: add social sharing links %>
               <li>
-                <a href="#">
+                <a href="#" id="facebook_share_link">
                   <i class="fa fa-facebook fa-2x"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://twitter.com/share" data-size="large" data-count="none" data-dnt="true">
                   <i class="fa fa-twitter fa-2x"></i>
                 </a>
               </li>
-              <li>
+              <%# TODO: add instagram sharing links %>
+              <li class="hidden">
                 <a href="#">
                   <i class="fa fa-instagram fa-2x"></i>
                 </a>
