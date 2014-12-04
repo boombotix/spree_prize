@@ -1,10 +1,15 @@
-<%# Datepicker JS / CSS %>
-<%= stylesheet_link_tag 'DateTimePicker.min.css' %>
-<%= javascript_include_tag 'DateTimePicker.min.js' %>  
-<!--[if lt IE 9]>
-  <%= stylesheet_link_tag 'DateTimePicker-ltie9.min.css' %>
-  <%= javascript_include_tag 'DateTimePicker-ltie9.min.js' %>
-<![endif]-->
+<%= content_for :head do %>
+  <%# Datepicker JS / CSS %>
+  <%= stylesheet_link_tag 'DateTimePicker.min.css' %>
+  <%= javascript_include_tag 'DateTimePicker.min.js' %>
+  <!--[if lt IE 9]>
+    <%= stylesheet_link_tag 'DateTimePicker-ltie9.min.css' %>
+    <%= javascript_include_tag 'DateTimePicker-ltie9.min.js' %>
+  <![endif]-->
+  <script>
+    $(function(){ $('#datetime-selector').DateTimePicker(); });
+  </script>
+<% end %>
 
 <div data-hook="admin_prizes">
   <%= form_for @prize, url: ( @prize.id.nil? ? admin_prizes_path(@prize) : admin_prize_path(@prize) ) do |f| %>
@@ -36,20 +41,20 @@
           <%= f.label :description, Spree::t('prize.description') %>
           <%= f.text_area :description, :class => 'fullwidth' %>
         </div>
-      
+        <div class="field">
+          <%= f.label :meta_description, Spree::t('prize.meta_description') %>
+          <%= f.text_field :meta_description, :class => 'fullwidth' %>
+        </div>
+
       <div class="form-buttons filter-actions actions" data-hook="buttons">
         <%= button Spree::t( action_name.eql?('edit') ? 'actions.update' : 'actions.create') %>
         <span class="or"><%= Spree::t(:or) %></span>
         <%= link_to_with_icon 'remove', Spree::t('actions.cancel'), admin_prizes_url, :class => 'button' %>
       </div>
     </fieldset>
-    
+
     <div class="clear"></div>
-  
+
   <% end %>
 </div>
 
-<script>
-  // $( ".calendar" ).datepicker({ dateFormat: "yy-mm-dd" });
-  $('#datetime-selector').DateTimePicker();
-</script>

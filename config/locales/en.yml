@@ -3,6 +3,7 @@
 
 en:
   spree:
+    social_title: 'Boombotix #FTW - Sick Swag Packs Every Week'
     prize: Prizes
     new_prize: New prize
     edit_prize: Edit prize
@@ -15,6 +16,7 @@ en:
       begin_time: Begin Time
       end_time: End Time
       description: Description
+      meta_description: Meta Description
       winner: Winner
       image: Photo
     candidate:

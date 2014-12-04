@@ -9,7 +9,7 @@ module Spree
         @prize = Spree::Prize.new(prize_params)
         respond_to do |format|
           if @prize.save
-            format.html { redirect_to admin_prizes_url, notice: 'Prize was successfully created.' }
+            format.html { redirect_to admin_prize_path(@prize), notice: 'Prize was successfully created.' }
             format.json { render json: @prize, status: :created, location: @prize }
           else
             format.html { render action: 'new', notice: @prize.errors.full_messages.to_sentence }
@@ -46,7 +46,7 @@ module Spree
 
       def show
         @prize = Spree::Prize.find(params[:id])
-        @candidates = @prize.candidates
+        @candidates = @prize.candidates.order('winable_id ASC')
       end
 
       def destroy
@@ -63,7 +63,7 @@ module Spree
       private
 
       def prize_params
-        params.require(:prize).permit(:title, :begin_time, :end_time, :description, :image, :image_file_name)
+        params.require(:prize).permit(:title, :begin_time, :end_time, :description, :meta_description, :image, :image_file_name)
       end
     end
   end
