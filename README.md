@@ -23,6 +23,9 @@ bundle
 bundle exec rails g spree_prize:install
 ```
 
+** Add `yield :head` and `yield :meta` statements in your application layout
+`<head>` tag. **
+
 Testing
 -------
 

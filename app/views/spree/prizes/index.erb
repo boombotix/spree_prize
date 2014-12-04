@@ -1,11 +1,28 @@
-<%# TODO: Add open graph meta tags %>
+<%# Open Graph Meta Tags %>
+<%= content_for :meta do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:title" content="<%= Spree::t('social_title') %>" />
+  <meta property="og:description" content="<%= @prizes.first.meta_description %>" />
+  <meta property="og:image" content="<%= @prizes.first.image.url(:medium) %>" />
+<% end %>
 
-<%# TODO: put the stylesheets in a yeild :head %>
-<%= javascript_include_tag 'flipclock.min' %>
-<%= javascript_include_tag 'social' %>
-<%= stylesheet_link_tag 'flipclock' %>
-<%= stylesheet_link_tag 'prizes' %>
-
+<%= content_for :head do %>
+  <%= javascript_include_tag 'flipclock.min' %>
+  <%= javascript_include_tag 'social' %>
+  <%= stylesheet_link_tag 'flipclock' %>
+  <%= stylesheet_link_tag 'prizes' %>
+  <script>
+    $(document).ready(function() {
+        $('#facebook_share_link').on('click', function() {
+            FB.ui({
+              method: 'share',
+              href: '<%= request.original_url %>'
+            },
+            function (response) { });
+        });
+    });
+  </script>
+<% end %>
 
 <div class="banner-box">
   <div class="container">
@@ -40,25 +57,12 @@
         <div class="wrap-social-area">
           <div class="social-area">
             <h6>Share</h6>
-<script>
-$(document).ready(function() {
-    $('#facebook_share_link').on('click', function() {
-        FB.ui({
-          method: 'share',
-          href: '<%= request.original_url %>'
-        },
-        function (response) { });
-    });
-});
-</script>
             <ul class="social-box clearfix">
               <li>
-                <a href="#" id="facebook_share_link">
-                  <i class="fa fa-facebook fa-2x"></i>
-                </a>
+                <i id="facebook_share_link" class="fa fa-facebook fa-2x"></i>
               </li>
               <li>
-                <a href="https://twitter.com/share" data-size="large" data-count="none" data-dnt="true">
+              <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
                   <i class="fa fa-twitter fa-2x"></i>
                 </a>
               </li>
@@ -143,7 +147,7 @@ $(document).ready(function() {
             <% end %>
           </tbody>
         </table>
-      </div>  
+      </div>
     </div>
   </div>
 </div>
