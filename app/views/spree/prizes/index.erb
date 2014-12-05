@@ -2,15 +2,15 @@
 <%= content_for :meta do %>
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:title" content="<%= Spree::t('social_title') %>" />
-  <meta property="og:description" content="<%= @prizes.first.meta_description %>" />
+  <meta property="og:description" content="<%= @prizes.first.meta_description ?
+    @prizes.first.meta_description : '' %>" />
   <meta property="og:image" content="<%= @prizes.first.image.url(:medium) %>" />
 <% end %>
 
 <%= content_for :head do %>
-  <%= javascript_include_tag 'flipclock.min' %>
-  <%= javascript_include_tag 'social' %>
   <%= stylesheet_link_tag 'flipclock' %>
   <%= stylesheet_link_tag 'prizes' %>
+  <%= javascript_include_tag 'flipclock.min' %>
   <script>
     $(document).ready(function() {
         $('#facebook_share_link').on('click', function() {
