@@ -5,7 +5,7 @@ module Spree
     has_many :candidates, through: :entries, class_name: 'Spree::Candidate'
     has_one :winner, as: :winable, class_name: 'Spree::Candidate'
 
-    validates :begin_time, :end_time, presence: true
+    validates :title, :meta_description, :begin_time, :end_time, presence: true
 
     def active?
       (begin_time .. end_time).cover?(Time.now)

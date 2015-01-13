@@ -2,9 +2,11 @@
 <%= content_for :meta do %>
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:title" content="<%= Spree::t('social_title') %>" />
-  <meta property="og:description" content="<%= @prizes.first.meta_description ?
-    @prizes.first.meta_description : '' %>" />
-  <meta property="og:image" content="<%= @prizes.first.image.url(:medium) %>" />
+  <% if @prizes.any? %>
+    <meta property="og:description" content="<%= @prizes.first.meta_description ?
+      @prizes.first.meta_description : '' %>" />
+    <meta property="og:image" content="<%= @prizes.first.image.url(:medium) %>" />
+  <% end %>
 <% end %>
 
 <%= content_for :head do %>
@@ -38,15 +40,83 @@
           <h4>SICK SWAG PACKS EVERY WEEK</h4>
         </div>
       </div>
-      <div class="wrap hidden-xs">
-        <div class="wrap-title">
-          <h5>ENTER HERE</h5>
+      <% if @prizes.any? %>
+        <div class="wrap hidden-xs">
+          <div class="wrap-title">
+            <h5>ENTER HERE</h5>
+          </div>
+        </div>
+        <div class="wrap-container">
+          <div class="form-area">
+            <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
+              <div class="form-box clearfix">
+                <%= candidate.text_field :email, placeholder: 'Email Address' %>
+                <%= button_tag 'ENTER NOW' %>
+              </div>
+            <% end %>
+          </div>
+          <div class="wrap-social-area">
+            <div class="social-area">
+              <h6>Share</h6>
+              <ul class="social-box clearfix">
+                <li>
+                  <i id="facebook_share_link" class="fa fa-facebook fa-2x"></i>
+                </li>
+                <li>
+                <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
+                    <i class="fa fa-twitter fa-2x"></i>
+                  </a>
+                </li>
+                <%# TODO: add instagram sharing links %>
+                <li class="hidden">
+                  <a href="#">
+                    <i class="fa fa-instagram fa-2x"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="container">
+    <% if @prizes.any? %>
+      <div class="top-area clearfix">
+        <div class="wrap-row clearfix">
+          <div class="left-cell">
+            <h2>THIS WEEK&apos;S PRIZE</h2>
+          </div>
+          <div class="right-cell">
+            <div class="timer-box">
+              <h6>Next drawing in:</h6>
+              <div class="wrap-clock">
+                <div class="clock clearfix" data-time="<%= @prizes.first.remaining %>"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="wrap-container">
-      <% unless @prizes.empty? %>
-        <div class="form-area">
-          <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
+      <% @prizes.each do |p| %>
+        <div class="wrap-row clearfix">
+          <div class="left-cell">
+            <h3><%= p.title %></h3>
+          </div>
+          <div class="right-cell">
+            <div class="wrap-img">
+              <% if p.image_file_name %>
+                <%= image_tag p.image.url(:medium) %>
+              <% end %>
+            </div>
+          </div>
+          <p><%= p.description %></p>
+        </div>
+
+        <div class="form-search form-area">
+          <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(p, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
             <div class="form-box clearfix">
               <%= candidate.text_field :email, placeholder: 'Email Address' %>
               <%= button_tag 'ENTER NOW' %>
@@ -54,76 +124,18 @@
           <% end %>
         </div>
       <% end %>
-        <div class="wrap-social-area">
-          <div class="social-area">
-            <h6>Share</h6>
-            <ul class="social-box clearfix">
-              <li>
-                <i id="facebook_share_link" class="fa fa-facebook fa-2x"></i>
-              </li>
-              <li>
-              <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
-                  <i class="fa fa-twitter fa-2x"></i>
-                </a>
-              </li>
-              <%# TODO: add instagram sharing links %>
-              <li class="hidden">
-                <a href="#">
-                  <i class="fa fa-instagram fa-2x"></i>
-                </a>
-              </li>
-            </ul>
+    <% else %>
+      <div class="top-area clearfix">
+        <div class="wrap-row clearfix">
+          <div>
+            <h2>Stand By...</h2>
+          </div>
+          <div>
+            <h6>We're getting the next #FTW Swag Pack ready to go. Please check back soon.</h6>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-content">
-  <div class="container">
-    <div class="top-area clearfix">
-      <div class="wrap-row clearfix">
-        <div class="left-cell">
-          <h2>THIS WEEK&apos;S PRIZE</h2>
-        </div>
-        <div class="right-cell">
-          <div class="timer-box">
-          <% if !@prizes.empty? %>
-            <h6>Next drawing in:</h6>
-            <div class="wrap-clock">
-              <div class="clock clearfix" data-time="<%= @prizes.first.remaining %>"></div>
-            </div>
-          <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% @prizes.each do |p| %>
-      <div class="wrap-row clearfix">
-        <div class="left-cell">
-          <h3><%= p.title %></h3>
-        </div>
-        <div class="right-cell">
-          <div class="wrap-img">
-            <% if p.image_file_name %>
-              <%= image_tag p.image.url(:medium) %>
-            <% end %>
-          </div>
-        </div>
-        <p><%= p.description %></p>
-      </div>
-
-      <div class="form-search form-area">
-        <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(p, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
-          <div class="form-box clearfix">
-            <%= candidate.text_field :email, placeholder: 'Email Address' %>
-            <%= button_tag 'ENTER NOW' %>
-          </div>
-        <% end %>
       </div>
     <% end %>
-
     <div class="table-box">
       <h2>THE WINNER&apos;S CIRCLE</h2>
       <div class="wrap-table">
