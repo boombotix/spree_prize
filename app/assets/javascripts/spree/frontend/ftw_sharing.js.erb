@@ -1,0 +1,66 @@
+window.fbAsyncInit = function() {
+    FB.init({
+        appId: '<%= FACEBOOK_WEB['app_id'] %>',
+        xfbml: true,
+        version: 'v2.1'
+    });
+
+    FB.getLoginStatus(function(response) {
+        if (response) {
+            window.fbLogin = response;
+        } else {
+            console.error('Unable to get Facebook login status');
+        }
+        $(function() {
+            $('#facebook-share-link').on('click', postToFacebook);
+
+            var fbLoginTries = 0;
+
+            function postToFacebook() {
+                if ((window.fbLogin.status !== 'connected') && fbLoginTries < 2) {
+                    FB.login(function(response) {
+                        window.fbLogin = response;
+                        fbLoginTries++;
+                    });
+                    postToFacebook();
+                } else {
+                    FB.ui({
+                        method: 'share',
+                        href: window.location.href
+                    }, function(response) {
+                        if (response && !response.error_code) {
+                            signupContestant();
+                        } else {
+                            console.log('Something went wrong while posting to facebook.')
+                        }
+                    });
+                }
+            }
+
+            function signupContestant() {
+                var spreeUri = $('#new_candidate').attr('action');
+
+                FB.api('/me', function(response) {
+                    $.post(spreeUri, {
+                        candidate: {
+                            email: response.email
+                        }
+                    }, function(data) {
+                        addAlertMessage('alert-success', data.message);
+                    });
+                });
+
+            }
+        });
+    });
+};
+
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js"
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
