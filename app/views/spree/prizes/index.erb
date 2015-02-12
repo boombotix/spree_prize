@@ -12,18 +12,8 @@
 <%= content_for :head do %>
   <%= stylesheet_link_tag 'flipclock' %>
   <%= stylesheet_link_tag 'prizes' %>
+  <%= javascript_include_tag 'spree/frontend/ftw_sharing' %>
   <%= javascript_include_tag 'flipclock.min' %>
-  <script>
-    $(document).ready(function() {
-        $('#facebook_share_link').on('click', function() {
-            FB.ui({
-              method: 'share',
-              href: '<%= request.original_url %>'
-            },
-            function (response) { });
-        });
-    });
-  </script>
 <% end %>
 
 <div class="banner-box">
@@ -40,41 +30,31 @@
           <h4>SICK SWAG PACKS EVERY WEEK</h4>
         </div>
       </div>
+      <div class="wrap-container">
       <% if @prizes.any? %>
-        <div class="wrap hidden-xs">
-          <div class="wrap-title">
-            <h5>ENTER HERE</h5>
-          </div>
-        </div>
-        <div class="wrap-container">
-          <div class="form-area">
-            <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
-              <div class="form-box clearfix">
-                <%= candidate.text_field :email, placeholder: 'Email Address' %>
-                <%= button_tag 'ENTER NOW' %>
-              </div>
-            <% end %>
-          </div>
-          <div class="wrap-social-area">
-            <div class="social-area">
-              <h6>Share</h6>
-              <ul class="social-box clearfix">
-                <li>
-                  <i id="facebook_share_link" class="fa fa-facebook fa-2x"></i>
-                </li>
-                <li>
-                <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
-                    <i class="fa fa-twitter fa-2x"></i>
-                  </a>
-                </li>
-                <%# TODO: add instagram sharing links %>
-                <li class="hidden">
-                  <a href="#">
-                    <i class="fa fa-instagram fa-2x"></i>
-                  </a>
-                </li>
-              </ul>
+        <div class="form-area">
+          <%= form_for Spree::Candidate.new, format: :json, url: prize_candidates_path(@prizes.first, Spree::Candidate.new), remote: true, html: { class: 'candidate-form' } do |candidate| %>
+            <div class="form-box clearfix">
+              <%= candidate.text_field :email, placeholder: 'Email Address' %>
+              <%= button_tag 'ENTER NOW' %>
             </div>
+          <% end %>
+        </div>
+        <div class="wrap-social-area">
+          <div class="social-area">
+            <h6>OR SHARE FOR AN ENTRY</h6>
+            <ul class="social-box clearfix">
+              <li>
+                <button id="facebook-share-link">
+                  <i class="fa fa-facebook fa-2x"></i>
+                </button>
+              </li>
+              <li class="hidden">
+                <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
+                  <i class="fa fa-twitter fa-2x"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       <% end %>
