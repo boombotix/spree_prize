@@ -9,7 +9,7 @@ module Spree
         @prize = Spree::Prize.new(prize_params)
         respond_to do |format|
           if @prize.save
-            format.html { redirect_to admin_prize_path(@prize), notice: 'Prize was successfully created.' }
+            format.html { redirect_to admin_prizes_path, notice: 'Prize was successfully created.' }
             format.json { render json: @prize, status: :created, location: @prize }
           else
             format.html { render action: 'new', notice: @prize.errors.full_messages.to_sentence }

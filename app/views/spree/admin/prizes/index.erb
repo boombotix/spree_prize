@@ -3,14 +3,14 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <li id="new_prize_link">
+  <!-- <li id="new_prize_link"> -->
     <%= button_link_to Spree.t(:new_prize), new_admin_prize_url, { :icon => 'plus', :id => 'admin_new_prize' } %>
-  </li>
+  <!-- </li> -->
 <% end %>
 
 <%= render :partial => 'spree/admin/shared/prizes_sub_menu' %>
 
-<table class="index" id="admin_prizes_list" data-hook>
+<table class="table" id="admin_prizes_list" data-hook>
   <thead>
     <tr>
       <th><%= t('prize.title') %></th>

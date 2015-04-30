@@ -5,8 +5,8 @@
       <span class="active_prize">Active</span>
     <% end %>
   </td>
-  <td><%= prize.begin_time %></td>
-  <td><%= prize.end_time %></td>
+  <td><%= prize.begin_time.strftime('%D %H:%M') %></td>
+  <td><%= prize.end_time.strftime('%D %H:%M') %></td>
   <td>
     <% if prize.winner %>
       <%= link_to(prize.winner.email, edit_admin_prize_candidate_path(prize, prize.winner)) %>

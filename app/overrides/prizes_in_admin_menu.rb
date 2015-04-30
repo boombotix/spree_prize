@@ -1,6 +1,6 @@
 Deface::Override.new(
-  virtual_path: 'spree/admin/shared/_menu',
+  virtual_path: 'spree/layouts/admin',
   insert_bottom: "[data-hook='admin_tabs']",
-  text: "<li class='tab-with-icon'><%= link_to 'PRIZES', admin_prizes_path, class: 'fa fa-beer icon_link with-tip' %></li>",
+  text: "<ul class='nav nav-sidebar'><%= tab *'Prizes', url: admin_prizes_path, icon: 'star' %></ul>",
   name: 'prizes_in_admin_menu'
 )

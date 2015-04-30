@@ -6,6 +6,7 @@ module Spree
     has_one :winner, as: :winable, class_name: 'Spree::Candidate'
 
     validates :begin_time, :end_time, presence: true
+    validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
     def active?
       (begin_time .. end_time).cover?(Time.now)
