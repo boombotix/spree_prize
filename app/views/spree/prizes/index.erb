@@ -36,7 +36,11 @@
       </div>
       <div class="hidden-xs">
         <div class="wrap-title">
-          <h5>ENTER HERE</h5>
+          <% if @prizes.any? %>
+            <h5>ENTER HERE</h5>
+          <% else %>
+            <h5>CHECK BACK SOON</h5>
+          <% end %>
         </div>
       </div>
       <div class="wrap-container">
@@ -58,7 +62,11 @@
                 <i id="facebook_share_link" class="fa fa-facebook fa-2x"></i>
               </li>
               <li>
-              <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree::t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
+                <%- if @prizes.any? %>
+                  <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree.t('social_title') + ': ' + @prizes.first.meta_description) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
+                <% else %>
+                  <a href="https://twitter.com/share?url=<%= URI.encode(request.original_url) %>&text=<%= URI.encode(Spree.t('social_title')) %>&hashtags=boombotix,FTW&related=boombotix" target="_blank">
+                <% end %>
                   <i class="fa fa-twitter fa-2x"></i>
                 </a>
               </li>
@@ -80,19 +88,19 @@
   <div class="container">
     <div class="top-area clearfix">
       <div class="wrap-row clearfix">
-        <div class="left-cell">
-          <h2>THIS WEEK&apos;S PRIZE</h2>
-        </div>
-        <div class="right-cell">
-          <div class="timer-box">
-          <% if !@prizes.empty? %>
-            <h6>Next drawing in:</h6>
-            <div class="wrap-clock">
-              <div class="clock clearfix" data-time="<%= @prizes.first.remaining %>"></div>
-            </div>
-          <% end %>
+        <% if @prizes.any? %>
+          <div class="left-cell">
+            <h2>THIS WEEK&apos;S PRIZE</h2>
           </div>
-        </div>
+          <div class="right-cell">
+            <div class="timer-box">
+              <h6>Next drawing in:</h6>
+              <div class="wrap-clock">
+                <div class="clock clearfix" data-time="<%= @prizes.first.remaining %>"></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <% @prizes.each do |p| %>
