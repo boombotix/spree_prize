@@ -70,12 +70,6 @@
                   <i class="fa fa-twitter fa-2x"></i>
                 </a>
               </li>
-              <%# TODO: add instagram sharing links %>
-              <li class="hidden">
-                <a href="#">
-                  <i class="fa fa-instagram fa-2x"></i>
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -127,32 +121,6 @@
         <% end %>
       </div>
     <% end %>
-
-    <div class="table-box">
-      <h2>THE WINNER&apos;S CIRCLE</h2>
-      <div class="wrap-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Name</th>
-              <th class="hidden-xs">City</th>
-              <th>Prize</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @winners.each do |winner| %>
-              <tr>
-                <td><%= winner.winable.end_time.strftime('%m/%d/%y') %></td>
-                <td><%= winner.name %></td>
-                <td class="hidden-xs"><%= "#{winner.city}, #{winner.state}" %></td>
-                <td><%= winner.winable.title %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </div>
 
